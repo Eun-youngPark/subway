@@ -1,0 +1,298 @@
+@charset "utf-8";
+*{margin: 0; padding: 0; line-height: 120%;}
+ul{list-style: none;}
+a{text-decoration: none; color: #666;}
+/* body{font-size: 16px; color: #666; height: 5000px; font-family: "font_ns" , sans-serif;}
+height: 5000px; 일단 설정해놓고 나중에 지울거임 */
+body{font-size: 16px; color: #666; font-family: "font_ns" , sans-serif;}
+
+
+
+
+.header{width: 100%; height: 164px; border-top: 5px solid #009223;}
+.header::after{content: ""; position: absolute; width: 100%; height: 1px; background-color: #ddd; top: 169px; z-index: 2;}
+/*  회색 밑줄 */
+/* ::after사용할때 항상! content: "";입력해주기!*/
+
+
+.header .header-wrap{width: 1170px; height: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; position: relative;}
+/* margin: 0 auto; 가운데로 보내기 */
+/* flex-wrap: wrap; 떨어트리는 코드*/
+/* position: relative; 기준점 */
+
+
+/* .header .header-wrap .logo지만 wrap건너뜀 가능 */
+.header .logo{text-align: center; flex-basis: 100%; margin-top: 35px;}
+/* 100%를 설정하기 때문에 가운데로 가는거임 */
+
+
+.header .etc-menu{position: absolute; right: 25px; top: 40px;}
+/* .header .header-wrap에서 지정한 position: relative;이 기준점이 됨
+즉, 1170을 기준으로 오른쪽으로 25픽셀, 탑에서 40픽셀로 설정되는거임*/
+.header .etc-menu ul{display: flex; align-items: center;}
+.header .etc-menu ul li{position: relative;}
+.header .etc-menu ul li a{display: block; font-size: 13px;}
+/* justify-content: space-between;은 균등하게 배열이 되기때문에 여기서는 사용못함 그래서 margin으로 설정해야함 */
+.header .etc-menu ul li:nth-child(2){margin-left: 30px; margin-right: 15px;}
+/* 여백 만들기 */
+/* .header .etc-menu ul li:nth-child(2){margin: 0 15px 0 30px;} */
+.header .etc-menu ul li:nth-child(2)::after{content: ""; position: absolute; width: 3px;height: 3px; background-color: #ddd; top: 50%; margin-top: -2px; left: -16px;}
+/* 가운데 점 만드는 거 */
+/* .header .etc-menu ul li{position: relative;}을 기준으로 했으니까 절대좌표로 움직임 */
+.header .etc-menu ul li:nth-child(3) a{font-size: 0; width: 30px; height: 30px; background-image: url("../images/icon_utill_global.png");}
+/* 글자를 아이콘으로 바꾸기 */
+/* .header .etc-menu ul li a{display: block; font-size: 13px;} block을 줬기때문에 가로 세로가 적용됨 */
+
+
+.header .nav{flex-basis: 100%; display: flex; height: 59px; padding-top: 16px; padding-bottom: 10px;}
+.header .nav ul{width: 990px; margin: 0 auto; height: 69px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 9;}
+/* 글자 배열하기 */
+/* height: 69px;는  
+.header .nav{flex-basis: 100%; display: flex; height: 59px; padding-top: 16px; padding-bottom: 10px;}의 높이와 패딩 바텀 더한 값으로 */
+/*  align-items: center;는  height: px; 높이 값이 꼭 있어야지 적용됨*/
+/* position: relative;*/
+/* z-index: 9; 숫자가 클수록 위에 오는거 
+앞으로 계속 작업하면서 또  z-index: ;를 써야할 수 있으니까~*/
+.header .nav ul li{flex-basis: 165px; text-align: center; font-weight: bold; font-size: 18px; letter-spacing: -0.04em; cursor: pointer; height: 69px; line-height: 67px;}
+/* letter-spacing: -0.04em; 글 자간 */
+/* line-height: px; 픽셀 꼭 확인!*/
+/*.header .nav ul li{ height: 69px; line-height: 67px;}을 또 준 이유는 커서 포인터가 글자위에서만 동작하는게 아니라 글자 가까이에 갔을때부터 동작하기 위해서 또 준거임. */
+.header .nav ul li a{display: inline-block; width: 100%; color: #292929;}
+.header .nav ul li.on a{color: #009223;}
+/* js에서 구현하는 거 */
+
+
+
+.header .submenu{width: 100%; background-color: #fff; transition: 0.2s; padding-top: 40px; margin-top: -41px; height: 0px; overflow: hidden; position: relative; z-index: 1;}
+/* 크기 영역 설정하기 */
+/* background-color: #eee; 색깔 넣고 영역 확인해보고 나중에 흰색으로 변경 */
+/* overflow: hidden; 넘치는거 막기 */
+/* background-color: #eee; 색깔 넣고 영역 확인해보기 */
+.header .submenu.on{height: 260px;}
+/* js에서 구현하는 거 */
+
+
+.header .submenu .submenu-wrap{width: 990px; margin: 0 auto; display: flex; justify-content: space-between;}
+
+.header .submenu ul{flex-basis: 165px; text-align: center; padding-top: 20px;}
+/* .header .submenu .submenu-wrap ul{} */
+
+.header .submenu ul li{height: 35px; transition: 0.2s; opacity: 0;}
+/* transition: 0.2s; 적용함으로써 글자 부드럽게 나오는 효과  */
+/* opacity: 0; 안보이는 척 설정 */
+.header .submenu ul li a{padding: 8px 0 9px; display: inline-block; width: 100%; font-size: 15px; letter-spacing: -0.05em;}
+.header .submenu ul li a:hover{color: #009223; text-decoration: underline;}
+/* text-decoration: underline; 밑줄 효과 */
+.header .submenu ul li.on{opacity: 1;}
+/* js에서 구현하는 거 */
+
+
+
+
+/* __________________________________________________ */
+
+.slide-section{width: 100%; height: 440px; position: relative; overflow: hidden; top: 1px;}
+/* overflow: hidden; */
+/* position: relative;로 설정하면 인디케이터가  올라옴 */
+.slide-section > ul{display: flex;}
+/* 자식을 적용해주기 위해 꺽새 표시 */
+.slide-section > ul li{position: relative;}
+.slide-section > ul li img{width: 100%; height: 440px;}
+
+
+.slide-section .indicator{position: absolute; right: 365px; bottom: 50px;}
+.slide-section .indicator ul{display: flex;}
+.slide-section .indicator ul li{margin: 0 5px;}
+.slide-section .indicator ul li a {font-size: 0; display: block; width: 10px; height: 10px; background-color: #fff; border-radius: 30px; transition: 0.3s;}
+/* 1을 font-size: 0; 값을 줌으로 없어지고 ~ */
+.slide-section .indicator ul li a.on{width: 30px; background-color: #ffc300;}
+/* js에서 구현하는 거 */
+
+
+/* __________________________________________________ */
+.quick-menu{width: 1170px; margin:-30px auto 0 auto; margin-top: -29px;  position: relative; z-index: 9; justify-content: flex-end; display: flex;}
+/* 겹쳐있는 컨텐츠들은 margin 값을 줘서 예(margin-top: -30px;) 강제로 이동시키는거 */
+/* width: 1170px;기준  justify-content: flex-end;*/
+/* justify-content: flex-end; display: flex; */
+.quick-menu ul{display: flex; flex-basis: 600px;}
+.quick-menu ul li{flex-basis: 300px; height: 80px; text-align: center;}
+.quick-menu ul li:nth-child(1){background-color: #ffce32; border-radius: 30px 0 0 0; letter-spacing: -0.02em;}
+/* border-radius: 왼쪽 위 꼭짓점- 오른쪽 위 꼭짓점  - 오른쪽 아래 꼭짓점 - 왼쪽 아래 꼭짓점*/
+.quick-menu ul li:nth-child(2){background-color: #009223; border-radius:  0 0 30px 0; letter-spacing: -0.06em;}
+.quick-menu ul li a{font-size: 22px; padding-top: 26px;display: inline-block; width: 100%; font-weight: bold;}
+/* padding-top: 27px;값 줬는데 안떨어지면 display: inline-block; 설정하기 */
+.quick-menu ul li:nth-child(1) a{color: #292929;}
+.quick-menu ul li:nth-child(1) a::before{content: ""; display: inline-block; width: 24px; height: 30px; background-image: url(../images/icon_map.png); vertical-align: middle; margin-right: 13px; position: relative; top: -2px;}
+.quick-menu ul li:nth-child(2) a{color: #fff;}
+.quick-menu ul li:nth-child(2) a::before{content: ""; display: inline-block; width: 34px; height: 30px; background-image: url(../images/icon_franchise.png); vertical-align: middle; margin-right: 13px; position: relative; top: -2px;}
+
+
+
+/* __________________________________________________ */
+.subway-menu{background-color: #fff; width: 100%; padding-bottom: 60px; height: 560px;}
+
+.subway-menu .menu-list{width: 1170px; margin: 0 auto; padding-top: 60px; padding-bottom: 33px; display: flex; justify-content: space-between;}
+
+.subway-menu .menu-list h3{color: #292929; font-size: 40px; font-family: "font_sw" serif; padding-top: 17px; padding-left: 25px; margin-bottom: 1px; height: 60px; background: url("../images/bul_tit.png") 0 12px no-repeat;}
+/* no-repeat 하나만 보이게 됨 */
+
+.subway-menu .menu-list ul{display: flex; margin-top: 44px;}
+.subway-menu .menu-list ul li{padding-left: 25px; margin-left: 23px; font-weight: 300; position: relative;}
+
+.subway-menu .menu-list ul li:not(:last-child)::after{content: ""; position: absolute; width: 1px; height: 15px; background-color: #ddd; right: -24px; top: 3px;}
+/* 글자 사이 | 는 ::after사용해서 만듦*/
+/* 마지막에는 | 없으니까 not태그 사용해서 하기 :not(:last-child)::after */
+.subway-menu .menu-list ul li a{display: inline-block; width: 100%; font-size: 16px; letter-spacing: -0.03em;}
+.subway-menu .menu-list ul li.on a{color: #009223; font-weight: bold;}
+/* js에서 구현하는 거 */
+
+
+
+/* __________________________________________________ */
+.subway-menu .menu-content{width: 100%; height: 320px; overflow: hidden; position: relative;}
+/* width: 100%;를 기준으로 overflow: hidden; */
+/* position: relative; 기준점을 잡아줘야 아래 .subway-menu .menu-content .arrow a{position: absolute;}이 적용됨  */
+
+.subway-menu .menu-content .menu-content-wrap{width: 1200px; height: 100%; display: none; position: absolute; left: 50%; transform: translateX(-50%);}
+/* display: none; 화면에서 없애서 안보이게 할끄야 */
+/* position: relative; 기준점을 잡아줘야 아래 .subway-menu .menu-content .arrow a{position: absolute;}이 적용됨  */
+.subway-menu .menu-content .menu-content-wrap:nth-child(1){display: block;}
+/* 다시 화면에 보이게 됨 */
+.subway-menu .menu-content .menu-wrap{width: 100%; height: 100%; overflow: hidden;}
+/*  width: 1200px;을 기준으로 넘치는 얘들을 넘치지 못하게 overflow: hidden;처리해줌*/
+
+.subway-menu .menu-content .menu-area{width: 200%; display: flex; position: relative;}
+/* display: flex; 하단의 바가 옆으로 정렬됨 */
+
+.subway-menu .menu-content .menu-box{flex-basis: 260px; height: 320px; margin-left: 30px; padding: 0 5px; cursor: pointer; text-align: center; position: relative;}
+.subway-menu .menu-content .menu-box::after{content: ""; width: 98px; height: 98px; background: url(../images/btn_more.png); left: 50%; top: 50%; margin: -22px 0 0 -42px; opacity: 0; position: absolute;}
+/* after를 이용해서 돋보기 만듦 */
+/* opacity: 0; 값줘서 처음에는 화면에 보이지 않게 만들어 줌 */
+.subway-menu .menu-content .menu-box img{ width: 100%; height: 182px;}
+.subway-menu .menu-content .menu-box:hover::after{opacity: 1;}
+/* 돋보기 보임 */ 
+.subway-menu .menu-content .menu-box:hover img{width: 340px; height: 238px;}
+/* 호버했을때 이미지 커지는 효과 */
+.subway-menu .menu-content .menu-box:hover p{display: none;}
+/* 호버했을때 글자가 사라지는 효과 */
+.subway-menu .menu-content .menu-box:hover h3{font-size: 22px; margin-top: 10px;}
+.subway-menu .menu-content .menu-box h3{color: #292929; font-size: 18px; margin-top: -1px; margin-bottom: 8px;}
+.subway-menu .menu-content .menu-box p{color: #999; font-size: 13px; line-height: 21px; letter-spacing: -0.04em;}
+
+.subway-menu .menu-content .arrow a{font-size: 0; position: absolute; top: 128px; width: 50px; height: 50px; overflow: hidden; background: url(../images/icon_event_slider_arr.png);}
+/* .menu-content에서 상속받으니까 .menu-content에서 position: relative; 기준점을 잡아줘야 
+.subway-menu .menu-content .arrow a{position: absolute;}이 적용됨  */
+.subway-menu .menu-content .arrow a:nth-child(1){left: -150px;}
+.subway-menu .menu-content .arrow a:nth-child(1):hover{background-position-y: 100%;}
+.subway-menu .menu-content .arrow a:nth-child(2){right: -150px; background-position-x: 100%;}
+.subway-menu .menu-content .arrow a:nth-child(2):hover{background-position-y: 100%;}
+
+
+
+/* __________________________________________________ */
+.content{width: 100%; background: url(../images/bg_content.gif) 0 -30px;}
+.content .content-wrap{width: 1280px; margin: 0 auto; padding: 80px 0;}
+.content .content-top{display: flex; width: 100%; height: 300px;}
+
+.content .content-top .content-amused{flex-basis: 400px; height: 100%; margin-left: 55px; background-image: url(../images/bg_utilization.png);}
+.content .content-top .content-amused h3{margin-left: 39px; color: #fff; font-size: 28px; line-height: 40px; letter-spacing: -0.02em;}
+.content .content-top .content-amused h3:nth-child(1){margin: 38px 0 0 39px; letter-spacing: -0.03em;}
+.content .content-top .content-amused a{display: inline-block; margin: 100px 0 0 41px; width: 92px; height: 36px; line-height: 36px; color: #fff; border: 2px solid #fff; text-align: center; border-radius: 20px; font-weight: 300;}
+/* border: 2px solid #fff; 이용방법 라운드 선 만들기*/
+
+.content .content-top .content-history{flex-basis: 825px; height: 100%; background-image: url(../images/img_subway_history.png);}
+.content .content-top .content-history h3{color: #fff; margin-left: 410px; font-size: 28px; line-height: 40px; letter-spacing: -0.02em;}
+.content .content-top .content-history h3:nth-child(1){margin-top: 38px;}
+.content .content-top .content-history a{display: inline-block; margin: 100px 0 0 410px; width: 128px; height: 36px; line-height: 36px; color: #fff; border: 2px solid #fff; text-align: center; border-radius: 20px; font-weight: 300;}
+
+
+
+/* __________________________________________________ */
+.content .content-bottom{width: 100%; height: 100%; margin: 30px 0 0 55px; display: flex;}
+.content .content-bottom .content-notice{display: flex; flex-basis: 870px; background-color: #fff; height: 300px; border-radius: 30px 0 30px 0; margin-right: 30px;}
+.content .content-bottom .content-notice .title{margin: 75px 0 0 60px;}
+.content .content-bottom .content-notice h3{color: #292929; font-size: 30px; font-family: "font_sw",serif; height: 60px; padding-top: 17px; padding-left: 25px; margin-bottom: 1px; background: url(../images/bul_tit.png) no-repeat 0 0;}
+.content .content-bottom .content-notice p{text-align: center; line-height: 26px; letter-spacing: -0.03em;}
+
+.content .content-bottom .content-notice .text{flex-basis: 50%; margin: 76px 0 0 133.5px;}
+.content .content-bottom .content-notice .text ul li:not(:nth-child(1)){margin-top: 21px;}
+.content .content-bottom .content-notice .text ul li a{color: ;#292929; font-size: 16px; letter-spacing: -0.03em; position: relative;}
+/* position: relative;글 밑에 선나오는 기준점 잡기위해 넣음 */
+
+.content .content-bottom .content-notice .text ul li a::after{content: ""; width: 0%; height: 1px; background-color: #009223; position: absolute; left: 0; bottom: 0;}
+/* left: 0; bottom: 0; 밑으로 떨어트리기 */
+/* 우선 width: 100%;해주고  다 확인해보고 width: 0;으로 바꾸면 안보이게 됨*/
+
+/* ??????????????? */
+.content .content-bottom .content-notice .text ul li{position: relative;}
+/* .content .content-bottom .content-notice .text ul li a.on{opacity: 1;} */
+.content .content-bottom .content-notice .text ul li a:hover::after {content: ''; height: 1px; left: 0; bottom: 1px; width: 0; background-color: #009223; position: absolute; transition-duration: 0.2s;}
+
+.content .content-bottom .content-notice .text > a{display: inline-block; color: #999; font-size: 14px; margin: 33px 0 0 7px;}
+
+.content .content-bottom .content-slide{flex-basis: 270px; background-color: #fff; height: 300px; position: relative; overflow: hidden; border-radius: 0 30px 0 30px;}
+.content .content-bottom .content-slide > ul{width: 200%; display: flex;}
+.content .content-bottom .content-slide .indicator{position: absolute; right: 15px; top: 20px;}
+.content .content-bottom .content-slide .indicator ul{display: flex;}
+.content .content-bottom .content-slide .indicator ul li{font-size: 0; width: 10px; height: 10px; background-color: #fff; margin: 0 5px; border-radius: 30px; transition: 0.3s; cursor: pointer;}
+.content .content-bottom .content-slide .indicator ul li.on{width: 30px; background-color: #ffc300;}
+
+
+
+/* __________________________________________________ */
+.footer-menu{text-align: center; padding: 40px 0 37px 0;}
+.footer-menu ul{display: inline-block; overflow: hidden; height: 70px;}
+/* display: inline-block;은 text-align: center;값을 먹는다.*/
+.footer-menu ul li{float: left; margin-left: 80px; height: 100%; position: relative;}
+.footer-menu ul li:nth-child(1){left: -1px; margin-left: 0;}
+.footer-menu ul li a{display: block; height: 70px; padding-left: 90px; overflow: hidden; font-size: 0;}
+
+.footer-menu ul li .icon{background: url(../images/icon_quickmenu.png) 0 0 no-repeat; width: 70px; height: 70px; position: absolute; left: 0; top: 0; }
+/* Sprite 이미지로 사용하면 좋은점은 한장에 다 설정할 수 있음/ 안좋은점은 이미지를 추가하면 다시 다 설정해야함 */
+.footer-menu ul li:nth-child(2) .icon{background-position-x: -70px;}
+.footer-menu ul li:nth-child(3) .icon{background-position-x: -140px;}
+.footer-menu ul li:nth-child(4) .icon{background-position-x: -210px;}
+
+.footer-menu ul li p{font-size: 18px; color: #292929; font-weight: bold; text-align: left; margin-top: 11px; letter-spacing: -0.04em;}
+
+.footer-menu ul li span{color: #999; font-size: 13px; margin-top: 6px; display: block; font-weight: normal; letter-spacing: -0.02em;}
+
+
+
+/* __________________________________________________ */
+.footer{background-color: #292929; padding: 24px 0 18.81px; color: #666; position: relative;}
+/* position: relative; 중간에 선때문에 값준거임 */
+.footer::after{content: ""; position: absolute; width: 100%; height: 1px; background-color: #3b3b3b; top: 39px;}
+/* 중간에 선 만들기 */
+/* 선을 자유롭게 이동할 수 있도록 하기 위해 ::after를 주는거임 */
+
+.footer .footer-wrap{width: 1170px; margin: 0 auto; position: relative;}
+
+.footer .footer-top{margin-bottom: 25px;}
+.footer .footer-top ul{display: flex;}
+.footer .footer-top ul li{margin-right: 29px; height: 18px; position: relative; top: -2px;}
+.footer .footer-top ul li:nth-child(2) a{color: #bbb; font-weight: bold;}
+/* 글자 색상 단독 변경하기
+부모에서 :nth-child()선택해서 a태그로 설정해야함*/
+.footer .footer-top ul li:last-child a{letter-spacing: 0.05em;}
+.footer .footer-top ul li a{display: block; font-size: 14px; letter-spacing: -0.05em;}
+
+.footer .footer-bottom span{font-size: 13px; display: inline-block; margin-top: 18px; margin-left: 3px; padding-left: 9px; letter-spacing: 0; position: relative;}
+.footer .footer-bottom span:not(:nth-child(1))::after{content: ""; position: absolute; left: 0;top: 3px; width: 2px; height: 10px; background-color: #666;}
+/* 양끝에서 선이 없게 만들기 */
+.footer .footer-bottom span:nth-child(1){margin-left: 0; padding-left: 0;}
+/* 글자 앞으로 땡기기 */
+
+.footer .footer-bottom p{font-size: 13px; line-height: 31px; letter-spacing: 0.005em; font-family: "font_sw" serif;}
+
+.footer .sns-link{position: absolute; right: -10px; top: 52px; width: 165px; height: 50px;}
+.footer .sns-link ul li{position: absolute; font-size: 0; width: 50px; height: 50px; overflow: hidden; bottom: 0; line-height: 0; cursor: pointer;}
+.footer .sns-link ul li::after{content: ""; width: 50px; height: 50px; display: block; transition: 0.3s; opacity: 0;}
+/* 마우스 올렸을때 밝게 하려고 */
+
+.footer .sns-link ul li:nth-child(1){background-image: url(../images/icon_sns_instar.png);}
+.footer .sns-link ul li:nth-child(1)::after{background: url(../images/icon_sns_instar.png) 100% 0;}
+.footer .sns-link ul li:nth-child(1):hover::after{opacity: 1;}
+.footer .sns-link ul li:nth-child(2){background-image: url(../images/icon_sns_facebook.png); left: 65px;}
+.footer .sns-link ul li:nth-child(2)::after{background: url(../images/icon_sns_facebook.png) 100% 0;}
+.footer .sns-link ul li:nth-child(2):hover::after{opacity: 1;}
